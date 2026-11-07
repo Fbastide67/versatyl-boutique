@@ -80,6 +80,7 @@
           <p class="promo-note">Un code promo ? Tu pourras le saisir sur la page de paiement.</p>
           <button class="btn accent" type="button" id="payer" style="width:100%">Payer ma précommande</button>
           <p class="aide" id="aide-payer"></p>
+          <p class="cgv-note">En payant, tu acceptes les <a href="mentions-legales.html#cgv">conditions de vente</a>.</p>
         </div>
 
         <div class="bloc infos">
@@ -101,7 +102,7 @@
             <summary>Conditions de précommande</summary>
             <div class="contenu">
               <p style="margin-top:0">Les t-shirts sont fabriqués après la fin des précommandes. Chaque QR code permet de récupérer la commande <strong>une seule fois</strong> : ne le partage pas.</p>
-              <p>Si la production ne pouvait pas avoir lieu, tu serais remboursé intégralement. Tu disposes d'un droit de rétractation de 14 jours après ton paiement : écris-nous pour l'exercer.</p>
+              <p>Si la production ne pouvait pas avoir lieu, tu serais remboursé intégralement. Tu peux te rétracter jusqu'à la remise du t-shirt, puis 14 jours après l'avoir récupéré : écris-nous pour l'exercer. <a href="mentions-legales.html#cgv">Toutes les conditions de vente</a>.</p>
               <p>Paiement sécurisé par Stripe. Nous ne voyons jamais ton numéro de carte.</p>
             </div>
           </details>
@@ -113,14 +114,6 @@
       <video id="video-logo" src="img/logo-chrome.mp4" poster="img/logo-chrome.jpg" muted loop playsinline preload="none" width="1280" height="720"></video>
     </section>
 
-    <section class="wrap soirees" aria-labelledby="titre-soirees">
-      <div class="soirees-tete">
-        <h2 id="titre-soirees">Nos soirées</h2>
-        <p>Des photos de nos dernières soirées. Le t-shirt se récupère à la prochaine.</p>
-      </div>
-      <div class="photos" id="photos-soiree"></div>
-      <a class="btn secondaire" href="#produit">Précommander mon t-shirt</a>
-    </section>
   </main>
 
   <footer>
@@ -128,6 +121,9 @@
     <nav>
       <a id="lien-insta" href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a>
       <a id="lien-contact" href="mailto:">Contact</a>
+      <a href="mentions-legales.html#mentions">Mentions légales</a>
+      <a href="mentions-legales.html#cgv">CGV</a>
+      <a href="mentions-legales.html#confidentialite">Confidentialité</a>
     </nav>
   </footer>
 
@@ -190,15 +186,6 @@
   if (photos.length < 2) $('vignettes').hidden = true;
   montrer(0);
 
-  // ---------- Photos de soirée ----------
-  (C.soiree || []).forEach(function (p) {
-    var f = document.createElement('figure');
-    var img = document.createElement('img');
-    img.src = p.src; img.alt = p.alt; img.loading = 'lazy'; img.decoding = 'async';
-    img.width = 900; img.height = 1125;
-    f.append(img); $('photos-soiree').append(f);
-  });
-  if (!(C.soiree || []).length) $('photos-soiree').closest('section').hidden = true;
 
   // Vidéo du logo : lancée seulement quand elle est visible, jamais si le visiteur limite les animations
   var video = $('video-logo');
