@@ -3,96 +3,132 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Précommande T-shirt</title>
-  <meta name="description" content="Précommande du t-shirt : choisis ta taille, paie en ligne, récupère-le à la soirée avec ton QR code.">
-  <meta name="theme-color" content="#f3f0e9">
+  <title>Précommande T-shirt · Versatyl</title>
+  <meta name="description" content="Précommande du t-shirt Versatyl : choisis ta taille, paie en ligne, récupère-le à la soirée avec ton QR code.">
+  <meta name="theme-color" content="#100b10">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="T-shirt Soirée 2026 · Versatyl">
+  <meta property="og:description" content="Édition limitée, produite uniquement à partir des précommandes.">
+  <meta property="og:image" content="https://fbastide67.github.io/versatyl-boutique/img/partage.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" href="img/favicon.png">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..900&display=swap">
+  <link rel="preload" as="image" href="photos/hero.jpg">
   <link rel="stylesheet" href="style.css">
   <script src="config.js"></script>
 </head>
-<body>
+<body class="accueil">
   <div id="bandeau" class="bandeau" hidden></div>
 
-  <header class="topbar">
-    <a class="brand" id="marque" href="./"></a>
-    <span class="tag">Précommande</span>
-  </header>
+  <section class="hero" aria-labelledby="titre">
+    <img src="photos/hero.jpg" alt="Deux DJ aux platines sous les néons roses d'une soirée Versatyl" fetchpriority="high">
+    <div class="hero-texte">
+      <img class="hero-logo" src="img/logo-lilas.svg" alt="Versatyl" width="460" height="194">
+      <p class="surtitre">Précommande</p>
+      <h1 id="titre"></h1>
+      <p class="accroche" id="accroche-hero"></p>
+      <div class="hero-actions">
+        <a class="btn accent" href="#produit" id="cta-hero"></a>
+        <div class="statut" id="statut-hero"></div>
+      </div>
+    </div>
+  </section>
 
-  <main class="wrap produit">
-    <section class="galerie" aria-label="Photos du t-shirt">
-      <div class="galerie-principale"><img id="photo" alt=""></div>
-      <div class="vignettes" id="vignettes"></div>
+  <main>
+    <div class="wrap produit" id="produit">
+      <section class="galerie" aria-label="Visuels du t-shirt">
+        <div class="galerie-principale"><img id="photo" alt="" width="1200" height="1200"></div>
+        <div class="vignettes" id="vignettes"></div>
+        <p class="mention">Maquettes du t-shirt : le rendu final peut légèrement varier.</p>
+      </section>
+
+      <section aria-labelledby="nom">
+        <h2 id="nom"></h2>
+        <p class="prix" id="prix"></p>
+        <p class="accroche" id="accroche"></p>
+        <div class="statut" id="statut"></div>
+
+        <div class="bloc">
+          <div class="bloc-titre">
+            <span>Taille</span>
+            <button class="lien" type="button" id="btn-guide" aria-expanded="false">Guide des tailles</button>
+          </div>
+          <div class="tailles" id="tailles" role="group" aria-label="Choix de la taille"></div>
+          <div class="guide" id="guide" hidden></div>
+        </div>
+
+        <div class="bloc">
+          <div class="bloc-titre"><span>Quantité</span></div>
+          <div class="ligne-ajout">
+            <div class="quantite">
+              <button type="button" id="moins" aria-label="Retirer un">−</button>
+              <output id="qte">1</output>
+              <button type="button" id="plus" aria-label="Ajouter un">+</button>
+            </div>
+            <button class="btn accent" type="button" id="ajouter">Ajouter au panier</button>
+          </div>
+          <p class="aide" id="aide-ajout"></p>
+        </div>
+
+        <div class="bloc panier" id="panier" hidden>
+          <div class="bloc-titre"><span>Ton panier</span></div>
+          <ul id="lignes"></ul>
+          <div class="total"><span>Total</span><span id="total"></span></div>
+          <p class="promo-note">Un code promo ? Tu pourras le saisir sur la page de paiement.</p>
+          <button class="btn accent" type="button" id="payer" style="width:100%">Payer ma précommande</button>
+          <p class="aide" id="aide-payer"></p>
+        </div>
+
+        <div class="bloc infos">
+          <details open>
+            <summary>Le t-shirt</summary>
+            <div class="contenu"><p id="description" style="margin-top:0"></p><dl id="details"></dl></div>
+          </details>
+          <details>
+            <summary>Comment ça marche</summary>
+            <div class="contenu">
+              <ol class="etapes">
+                <li>Tu choisis ta taille et tu paies en ligne (carte, Apple Pay, Google Pay).</li>
+                <li>Tu reçois aussitôt un e-mail avec ton QR code personnel.</li>
+                <li><span id="retrait"></span></li>
+              </ol>
+            </div>
+          </details>
+          <details>
+            <summary>Conditions de précommande</summary>
+            <div class="contenu">
+              <p style="margin-top:0">Les t-shirts sont fabriqués après la fin des précommandes. Chaque QR code permet de récupérer la commande <strong>une seule fois</strong> : ne le partage pas.</p>
+              <p>Si la production ne pouvait pas avoir lieu, tu serais remboursé intégralement. Tu disposes d'un droit de rétractation de 14 jours après ton paiement : écris-nous pour l'exercer.</p>
+              <p>Paiement sécurisé par Stripe. Nous ne voyons jamais ton numéro de carte.</p>
+            </div>
+          </details>
+        </div>
+      </section>
+    </div>
+
+    <section class="marque-video" aria-hidden="true">
+      <video id="video-logo" src="img/logo-chrome.mp4" poster="img/logo-chrome.jpg" muted loop playsinline preload="none" width="1280" height="720"></video>
     </section>
 
-    <section>
-      <h1 id="nom"></h1>
-      <p class="prix" id="prix"></p>
-      <p class="accroche" id="accroche"></p>
-      <div class="statut" id="statut"></div>
-
-      <div class="bloc">
-        <div class="bloc-titre">
-          <span>Taille</span>
-          <button class="lien" type="button" id="btn-guide" aria-expanded="false">Guide des tailles</button>
-        </div>
-        <div class="tailles" id="tailles" role="group" aria-label="Choix de la taille"></div>
-        <div class="guide" id="guide" hidden></div>
+    <section class="wrap soirees" aria-labelledby="titre-soirees">
+      <div class="soirees-tete">
+        <h2 id="titre-soirees">Nos soirées</h2>
+        <p>Des photos de nos dernières soirées. Le t-shirt se récupère à la prochaine.</p>
       </div>
-
-      <div class="bloc">
-        <div class="bloc-titre"><span>Quantité</span></div>
-        <div class="ligne-ajout">
-          <div class="quantite">
-            <button type="button" id="moins" aria-label="Retirer un">−</button>
-            <output id="qte">1</output>
-            <button type="button" id="plus" aria-label="Ajouter un">+</button>
-          </div>
-          <button class="btn" type="button" id="ajouter">Ajouter au panier</button>
-        </div>
-        <p class="aide" id="aide-ajout"></p>
-      </div>
-
-      <div class="bloc panier" id="panier" hidden>
-        <div class="bloc-titre"><span>Ton panier</span></div>
-        <ul id="lignes"></ul>
-        <div class="total"><span>Total</span><span id="total"></span></div>
-        <p class="promo-note">Un code promo ? Tu pourras le saisir sur la page de paiement.</p>
-        <button class="btn accent" type="button" id="payer" style="width:100%">Payer ma précommande</button>
-        <p class="aide" id="aide-payer"></p>
-      </div>
-
-      <div class="bloc infos">
-        <details open>
-          <summary>Le t-shirt</summary>
-          <div class="contenu"><p id="description" style="margin-top:0"></p><dl id="details"></dl></div>
-        </details>
-        <details>
-          <summary>Comment ça marche</summary>
-          <div class="contenu">
-            <ol class="etapes">
-              <li>Tu choisis ta taille et tu paies en ligne (carte, Apple Pay, Google Pay).</li>
-              <li>Tu reçois aussitôt un e-mail avec ton QR code personnel.</li>
-              <li><span id="retrait"></span></li>
-            </ol>
-          </div>
-        </details>
-        <details>
-          <summary>Conditions de précommande</summary>
-          <div class="contenu">
-            <p style="margin-top:0">Les t-shirts sont fabriqués après la fin des précommandes. Chaque QR code permet de récupérer la commande <strong>une seule fois</strong> : ne le partage pas.</p>
-            <p>Si la production ne pouvait pas avoir lieu, tu serais remboursé intégralement. Tu disposes d'un droit de rétractation de 14 jours après ton paiement : écris-nous pour l'exercer.</p>
-            <p>Paiement sécurisé par Stripe. Nous ne voyons jamais ton numéro de carte.</p>
-          </div>
-        </details>
-      </div>
+      <div class="photos" id="photos-soiree"></div>
+      <a class="btn secondaire" href="#produit">Précommander mon t-shirt</a>
     </section>
   </main>
 
   <footer>
-    <a id="lien-insta" href="#" target="_blank" rel="noopener">Instagram</a>
-    <a id="lien-contact" href="#">Contact</a>
+    <img src="img/logo-clair.svg" alt="Versatyl" width="96" height="40">
+    <nav>
+      <a id="lien-insta" href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a>
+      <a id="lien-contact" href="mailto:">Contact</a>
+    </nav>
   </footer>
 
   <div class="barre" id="barre" hidden>
@@ -108,8 +144,10 @@
   var demo = !C.API_URL;
 
   // ---------- Textes ----------
-  document.title = C.produit + ' — ' + C.marque;
-  $('marque').textContent = C.marque;
+  document.title = C.produit + ' · ' + C.marque;
+  $('titre').textContent = C.produit;
+  $('accroche-hero').textContent = C.accroche;
+  $('cta-hero').textContent = 'Précommander · ' + euros(C.prix);
   $('nom').textContent = C.produit;
   $('prix').textContent = euros(C.prix);
   $('accroche').textContent = C.accroche;
@@ -126,26 +164,18 @@
   var fin = new Date(C.finPrecommande);
   var ouvert = new Date() < fin;
   var dateFin = fin.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long' });
-  $('statut').textContent = ouvert ? 'Précommandes ouvertes jusqu’au ' + dateFin : 'Précommandes terminées';
-  if (!ouvert) { $('statut').classList.add('ferme'); $('ajouter').disabled = true; }
+  ['statut', 'statut-hero'].forEach(function (id) {
+    $(id).textContent = ouvert ? 'Précommandes ouvertes jusqu’au ' + dateFin : 'Précommandes terminées';
+    if (!ouvert) $(id).classList.add('ferme');
+  });
+  if (!ouvert) $('ajouter').disabled = true;
 
   var params = new URLSearchParams(location.search);
   if (demo) { $('bandeau').hidden = false; $('bandeau').className = 'bandeau demo'; $('bandeau').textContent = 'Mode démo : aucun paiement réel, tout est simulé.'; }
   else if (params.has('annule')) { $('bandeau').hidden = false; $('bandeau').textContent = 'Paiement annulé. Ton panier est toujours là.'; }
 
   // ---------- Photos ----------
-  function tshirt(couleur, texte, dos) {
-    var svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><rect width="400" height="400" fill="#e7e2d7"/>' +
-      '<path d="M140 70 L92 90 L40 150 L80 190 L112 165 L112 345 L288 345 L288 165 L320 190 L360 150 L308 90 L260 70 ' +
-      (dos ? 'Q230 80 200 80 Q170 80 140 70 Z' : 'Q245 112 200 112 Q155 112 140 70 Z') + '" fill="' + couleur + '" stroke="#00000022" stroke-width="2"/>' +
-      '<text x="200" y="' + (dos ? 200 : 215) + '" text-anchor="middle" font-family="Arial, sans-serif" font-weight="900" font-size="22" fill="#e7e2d7" letter-spacing="2">' + texte + '</text>' +
-      '<text x="200" y="385" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#8a857b">' + (dos ? 'DOS' : 'DEVANT') + ' — visuel provisoire</text></svg>';
-    return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
-  }
-  var photos = C.photos.length ? C.photos : [
-    { src: tshirt('#1d1c1a', 'TON DESIGN', false), alt: 'Devant du t-shirt (visuel provisoire)' },
-    { src: tshirt('#1d1c1a', 'DESIGN DOS', true), alt: 'Dos du t-shirt (visuel provisoire)' },
-  ];
+  var photos = C.photos;
   function montrer(i) {
     $('photo').src = photos[i].src; $('photo').alt = photos[i].alt;
     Array.prototype.forEach.call($('vignettes').children, function (b, j) { b.setAttribute('aria-current', i === j); });
@@ -159,6 +189,25 @@
   });
   if (photos.length < 2) $('vignettes').hidden = true;
   montrer(0);
+
+  // ---------- Photos de soirée ----------
+  (C.soiree || []).forEach(function (p) {
+    var f = document.createElement('figure');
+    var img = document.createElement('img');
+    img.src = p.src; img.alt = p.alt; img.loading = 'lazy'; img.decoding = 'async';
+    img.width = 900; img.height = 1125;
+    f.append(img); $('photos-soiree').append(f);
+  });
+  if (!(C.soiree || []).length) $('photos-soiree').closest('section').hidden = true;
+
+  // Vidéo du logo : lancée seulement quand elle est visible, jamais si le visiteur limite les animations
+  var video = $('video-logo');
+  var calme = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!calme && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function (e) {
+      if (e[0].isIntersecting) { video.preload = 'auto'; video.play().catch(function () {}); } else video.pause();
+    }, { threshold: .25 }).observe(video);
+  }
 
   // ---------- Tailles + guide ----------
   var taille = null, qte = 1;
@@ -207,7 +256,7 @@
     $('lignes').innerHTML = '';
     panier.forEach(function (l, i) {
       var li = document.createElement('li');
-      var t = document.createElement('span'); t.textContent = 'Taille ' + l.size + ' × ' + l.qty + ' — ' + euros(l.qty * C.prix);
+      var t = document.createElement('span'); t.textContent = 'Taille ' + l.size + ' × ' + l.qty + ' · ' + euros(l.qty * C.prix);
       var r = document.createElement('button'); r.type = 'button'; r.textContent = 'Retirer';
       r.onclick = function () { panier.splice(i, 1); rendre(); sauver(); };
       li.append(t, r); $('lignes').append(li);

@@ -8,12 +8,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..900&display=swap">
+  <link rel="icon" type="image/png" href="img/favicon.png">
   <link rel="stylesheet" href="style.css">
   <script src="config.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
 </head>
 <body>
-  <header class="topbar"><a class="brand" id="marque" href="./"></a><span class="tag">Précommande</span></header>
+  <header class="topbar"><a class="brand" href="./"><img src="img/logo-clair.svg" alt="Versatyl" width="118" height="50"></a><span class="tag">Précommande</span></header>
 
   <main class="wrap">
     <div class="carte" id="carte">
@@ -25,7 +26,6 @@
 (function () {
   var C = window.BOUTIQUE;
   var $ = function (id) { return document.getElementById(id); };
-  $('marque').textContent = C.marque;
   var p = new URLSearchParams(location.search);
   var euros = function (n) { return Number(n).toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' }); };
   var esc = function (s) { var d = document.createElement('div'); d.textContent = s == null ? '' : s; return d.innerHTML; };

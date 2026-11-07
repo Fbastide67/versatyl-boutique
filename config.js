@@ -32,10 +32,26 @@ window.BOUTIQUE = {
     lignes: [['XS', 49, 68], ['S', 52, 70], ['M', 55, 72], ['L', 58, 74], ['XL', 61, 76], ['XXL', 64, 78]],
   },
 
-  // Photos : dépose les fichiers dans boutique/photos/ puis liste-les ici.
-  // Tant que la liste est vide, des visuels provisoires s'affichent.
-  // Exemple : photos: [{ src: 'photos/devant.jpg', alt: 'Devant du t-shirt' }],
-  photos: [],
+  // Visuels du t-shirt (galerie du produit). Quand tu auras de vraies photos
+  // du t-shirt, dépose-les dans photos/ et remplace ces maquettes.
+  photos: [
+    { src: 'img/tshirt-dos.jpg', alt: 'Dos du t-shirt noir : la créature Versatyl violette et rose, logo dessous' },
+    { src: 'img/tshirt-devant.jpg', alt: 'Devant du t-shirt noir : logo Versatyl lilas sur la poitrine' },
+    { src: 'img/visuel-dos.jpg', alt: 'Le visuel du dos en grand' },
+  ],
+
+  // Photos de la section « Nos soirées » (dans photos/)
+  soiree: [
+    { src: 'photos/soiree-01.jpg', alt: 'Deux amies qui rient dans la foule' },
+    { src: 'photos/soiree-02.jpg', alt: 'DJ les bras levés sous la lumière verte' },
+    { src: 'photos/soiree-03.jpg', alt: 'DJ aux platines dans la lumière rose' },
+    { src: 'photos/soiree-04.jpg', alt: 'DJ à lunettes qui pointe la foule, lumière bleue' },
+    { src: 'photos/soiree-05.jpg', alt: 'Couple qui danse, en noir et blanc' },
+    { src: 'photos/soiree-06.jpg', alt: 'Public sous les projecteurs' },
+    { src: 'photos/soiree-07.jpg', alt: 'DJ concentré sur le mix, néons roses' },
+    { src: 'photos/soiree-08.jpg', alt: 'DJ les bras ouverts derrière les platines' },
+    { src: 'photos/soiree-09.jpg', alt: 'DJ aux platines sous les néons violets' },
+  ],
 
   instagram: 'https://www.instagram.com/',   // ton compte
   contact: 'contact@exemple.fr',             // e-mail pour les questions
