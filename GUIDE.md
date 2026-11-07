@@ -87,13 +87,7 @@ Le dépôt GitHub `versatyl-boutique` est la copie de travail : **modifier un fi
 
 Ce qui est envoyé : le dossier `ovh/` devient la racine de `versatyl.fr`, tout le reste (sauf `apps-script/` et les `.md`) va dans `versatyl.fr/shopping/`.
 
-**Accès FTP (à faire une seule fois)** — dans le dépôt : **Settings → Secrets and variables → Actions → New repository secret**, crée :
-
-| Secret | Où le trouver dans OVH (Hébergements → versatyl.fr → FTP-SSH) |
-|---|---|
-| `OVH_FTP_SERVER` | « Serveur FTP » (ex. `ftp.cluster0XX.hosting.ovh.net`) |
-| `OVH_FTP_USER` | « Login FTP principal » |
-| `OVH_FTP_PASSWORD` | le mot de passe FTP (tu peux le changer avec « … → Modifier le mot de passe ») |
+**Mot de passe FTP (à faire une seule fois)** — l'envoi se fait en SFTP vers l'hébergement OVH `versatv` (serveur et login sont déjà dans `.github/workflows/publier-ovh.yml`). Il ne manque que le mot de passe : dans le dépôt, **Settings → Secrets and variables → Actions → New repository secret**, nom `OVH_FTP_PASSWORD`, valeur = le mot de passe FTP reçu par mail d'OVH (ou changé dans OVH : Hébergements → versatyl.fr → FTP-SSH → … → Modifier le mot de passe).
 
 `SITE_URL` (étape 3) doit valoir `https://versatyl.fr/shopping/`.
 

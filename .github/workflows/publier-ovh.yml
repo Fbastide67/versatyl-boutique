@@ -6,8 +6,8 @@
 #   versatyl.fr/            ← le contenu du dossier ovh/ (page d'accueil)
 #   versatyl.fr/shopping/   ← la boutique (tout le dépôt sauf apps-script, ovh, .md)
 #
-# Accès FTP à renseigner une fois dans Settings → Secrets and variables → Actions :
-#   OVH_FTP_SERVER, OVH_FTP_USER, OVH_FTP_PASSWORD
+# Envoi en SFTP (chiffré). Le seul secret à renseigner, dans
+# Settings → Secrets and variables → Actions : OVH_FTP_PASSWORD (mot de passe FTP OVH).
 name: Publier sur versatyl.fr
 
 on:
@@ -16,6 +16,10 @@ on:
 concurrency:
   group: publier-ovh
   cancel-in-progress: false
+
+env:
+  OVH_SERVEUR: ssh.cluster129.hosting.ovh.net
+  OVH_LOGIN: versatv
 
 jobs:
   publier:
@@ -36,11 +40,17 @@ jobs:
           find _site -type f | sort
 
       - name: Envoyer sur OVH
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.OVH_FTP_SERVER }}
-          username: ${{ secrets.OVH_FTP_USER }}
-          password: ${{ secrets.OVH_FTP_PASSWORD }}
-          protocol: ftps
-          local-dir: ./_site/
-          server-dir: ./www/
+        env:
+          LFTP_PASSWORD: ${{ secrets.OVH_FTP_PASSWORD }}
+        run: |
+          if [ -z "$LFTP_PASSWORD" ]; then
+            echo "::error::Le secret OVH_FTP_PASSWORD n'est pas renseigné (Settings → Secrets and variables → Actions)."
+            exit 1
+          fi
+          sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+          lftp -c "
+            set sftp:auto-confirm yes;
+            set net:max-retries 2;
+            open -u $OVH_LOGIN --env-password sftp://$OVH_SERVEUR;
+            mirror --reverse --delete --verbose --parallel=4 _site/ www/;
+          "
