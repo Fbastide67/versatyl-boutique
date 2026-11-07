@@ -76,17 +76,26 @@ Dans Apps Script : **⚙️ Paramètres du projet → Propriétés du script →
 
 > Si tu modifies le script plus tard : **Déployer → Gérer les déploiements → ✏️ → Version : Nouvelle version**, sinon l'ancienne version continue de tourner.
 
-### 6. Mettre la page en ligne
-La boutique a son propre dépôt GitHub (`versatyl-boutique`), publié avec GitHub Pages à l'adresse :
-`https://fbastide67.github.io/versatyl-boutique/`
-C'est cette adresse qu'il faut mettre dans `SITE_URL` (étape 3) et dans la bio Instagram.
+### 6. Mettre la page en ligne (versatyl.fr)
+Le site public est hébergé chez **OVH** : la boutique est sur **https://versatyl.fr/shopping/** et `https://versatyl.fr` y renvoie.
+Le dépôt GitHub `versatyl-boutique` est la copie de travail : **modifier un fichier sur GitHub ne change pas le site public.**
 
-**Avec un nom de domaine à toi** (ex. `boutique.versatyl.fr`) :
-1. Chez le registrar (OVH, Gandi, Cloudflare…), ajoute un enregistrement DNS **CNAME** : nom `boutique` → valeur `fbastide67.github.io`.
-   (Pour un domaine nu comme `versatyl.fr` : 4 enregistrements **A** vers `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`.)
-2. Dans le dépôt : **Settings → Pages → Custom domain** → tape le domaine → **Save**, puis coche **Enforce HTTPS** quand c'est possible (jusqu'à 24 h).
-3. Remplace `SITE_URL` dans les propriétés du script par la nouvelle adresse, terminée par `/` (ex. `https://boutique.versatyl.fr/`).
-L'ancienne adresse en `github.io` redirige automatiquement vers le domaine.
+**Publier une modification :**
+1. Fais (ou fais faire) la modif dans le dépôt GitHub.
+2. Onglet **Actions** du dépôt → **Publier sur versatyl.fr** (à gauche) → bouton **Run workflow** → **Run workflow**.
+3. Au bout d'une minute environ, une coche verte ✅ apparaît : le site est à jour (vide le cache ou recharge la page si tu vois encore l'ancienne version).
+
+Ce qui est envoyé : le dossier `ovh/` devient la racine de `versatyl.fr`, tout le reste (sauf `apps-script/` et les `.md`) va dans `versatyl.fr/shopping/`.
+
+**Accès FTP (à faire une seule fois)** — dans le dépôt : **Settings → Secrets and variables → Actions → New repository secret**, crée :
+
+| Secret | Où le trouver dans OVH (Hébergements → versatyl.fr → FTP-SSH) |
+|---|---|
+| `OVH_FTP_SERVER` | « Serveur FTP » (ex. `ftp.cluster0XX.hosting.ovh.net`) |
+| `OVH_FTP_USER` | « Login FTP principal » |
+| `OVH_FTP_PASSWORD` | le mot de passe FTP (tu peux le changer avec « … → Modifier le mot de passe ») |
+
+`SITE_URL` (étape 3) doit valoir `https://versatyl.fr/shopping/`.
 
 ### 7. Créer les codes promo
 Dans Stripe : **Catalogue de produits → Coupons → Créer un coupon** (ex. −20 % ou −5 €), puis dans le coupon **Ajouter un code promotionnel** (ex. `SOIREE20`).

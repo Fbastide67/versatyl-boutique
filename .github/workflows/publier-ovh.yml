@@ -1,0 +1,46 @@
+# Publie le site sur versatyl.fr (hébergement OVH).
+# Ne se lance JAMAIS tout seul : une modif poussée sur GitHub ne change pas le site public.
+# Pour publier : onglet « Actions » du dépôt → « Publier sur versatyl.fr » → « Run workflow ».
+#
+# Ce qui est envoyé sur OVH (dossier www/) :
+#   versatyl.fr/            ← le contenu du dossier ovh/ (page d'accueil)
+#   versatyl.fr/shopping/   ← la boutique (tout le dépôt sauf apps-script, ovh, .md)
+#
+# Accès FTP à renseigner une fois dans Settings → Secrets and variables → Actions :
+#   OVH_FTP_SERVER, OVH_FTP_USER, OVH_FTP_PASSWORD
+name: Publier sur versatyl.fr
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: publier-ovh
+  cancel-in-progress: false
+
+jobs:
+  publier:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v4
+
+      - name: Préparer les fichiers du site
+        run: |
+          mkdir -p _site/shopping
+          rsync -a \
+            --exclude='.git' --exclude='.github' --exclude='apps-script' \
+            --exclude='ovh' --exclude='_site' --exclude='*.md' \
+            ./ _site/shopping/
+          cp -r ovh/. _site/
+          echo "Fichiers qui seront en ligne :"
+          find _site -type f | sort
+
+      - name: Envoyer sur OVH
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.OVH_FTP_SERVER }}
+          username: ${{ secrets.OVH_FTP_USER }}
+          password: ${{ secrets.OVH_FTP_PASSWORD }}
+          protocol: ftps
+          local-dir: ./_site/
+          server-dir: ./www/

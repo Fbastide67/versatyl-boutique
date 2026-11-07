@@ -10,7 +10,7 @@
  * Réglages secrets (Paramètres du projet ⚙️ > Propriétés du script) :
  *   STRIPE_SECRET_KEY  → sk_test_... pour tester, sk_live_... pour de vrai
  *   STAFF_PIN          → code que l'équipe tape sur la page scanner (6 chiffres ou plus)
- *   SITE_URL           → adresse de la boutique, terminée par /  (ex : https://fbastide67.github.io/versatyl-boutique/)
+ *   SITE_URL           → adresse de la boutique, terminée par /  (ex : https://versatyl.fr/shopping/)
  */
 
 // ====================== RÉGLAGES (garder pareil que config.js) ======================
