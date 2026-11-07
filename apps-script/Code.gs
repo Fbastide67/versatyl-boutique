@@ -22,7 +22,7 @@ var PRODUIT = {
   maxParTaille: 10,
   finPrecommande: '2026-11-30T23:59:00+01:00',
   retrait: 'À récupérer à la soirée du samedi 13 décembre 2026, sur présentation de ce QR code.',
-  contact: 'contact@exemple.fr',
+  contact: 'versatyl.marseille@gmail.com',
 };
 // ====================================================================================
 

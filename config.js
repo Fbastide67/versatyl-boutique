@@ -41,7 +41,7 @@ window.BOUTIQUE = {
   ],
 
   instagram: 'https://www.instagram.com/',   // ton compte
-  contact: 'contact@exemple.fr',             // e-mail pour les questions
+  contact: 'versatyl.marseille@gmail.com',            // e-mail pour les questions
 
   // Page « Mentions légales, CGV, confidentialité » (mentions-legales.html).
   // Remplis chaque ligne : tant qu'une ligne est vide, la page affiche « à compléter ».
