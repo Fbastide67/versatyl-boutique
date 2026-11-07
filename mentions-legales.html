@@ -67,7 +67,7 @@
       <p>Le t-shirt bénéficie de la garantie légale de conformité (articles L217-3 et suivants du Code de la consommation) et de la garantie contre les vices cachés (articles 1641 et suivants du Code civil). En cas de défaut, écris-nous : nous le remplaçons ou te remboursons.</p>
 
       <h3>8. Réclamations et litiges</h3>
-      <p>Pour toute réclamation, écris-nous à <a class="js-contact" href="#"></a> : nous répondons sous quelques jours. Si aucun accord n'est trouvé, tu peux recourir gratuitement au médiateur de la consommation : <span data-legal="mediateur"></span>. Ces conditions sont soumises au droit français.</p>
+      <p>Pour toute réclamation, écris-nous à <a class="js-contact" href="#"></a> : nous répondons sous quelques jours. <span class="js-mediateur">Si aucun accord n'est trouvé, tu peux recourir gratuitement au médiateur de la consommation : <span data-legal="mediateur"></span>. </span>Ces conditions sont soumises au droit français.</p>
     </section>
 
     <section id="confidentialite">
@@ -96,6 +96,7 @@
 (function () {
   var C = window.BOUTIQUE, L = C.legal || {};
   var tous = function (sel) { return Array.prototype.slice.call(document.querySelectorAll(sel)); };
+  if (!(L.mediateur || '').trim()) tous('.js-mediateur').forEach(function (e) { e.remove(); });
   var euros = function (n) { return n.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR', minimumFractionDigits: n % 1 ? 2 : 0 }); };
 
   tous('[data-legal]').forEach(function (el) {

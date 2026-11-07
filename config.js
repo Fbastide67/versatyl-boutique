@@ -46,13 +46,13 @@ window.BOUTIQUE = {
   // Page « Mentions légales, CGV, confidentialité » (mentions-legales.html).
   // Remplis chaque ligne : tant qu'une ligne est vide, la page affiche « à compléter ».
   legal: {
-    vendeur: '',          // ex. 'Association Versatyl' ou 'Prénom Nom (entrepreneur individuel)'
-    statut: '',           // ex. 'Association loi 1901' ou 'Micro-entreprise'
-    adresse: '',          // adresse postale complète
-    immatriculation: '',  // ex. 'SIRET 123 456 789 00012' ou 'RNA W131234567'
-    responsable: '',      // directeur·rice de la publication (nom de la personne)
-    tva: '',              // ex. 'TVA non applicable, art. 293 B du CGI'
-    mediateur: '',        // médiateur de la consommation : nom + site web (obligatoire pour un pro)
+    vendeur: 'Versatyl Marseille',
+    statut: 'Association loi 1901',
+    adresse: '69 chemin de la Tuilerie, 84470 Châteauneuf-de-Gadagne',
+    immatriculation: 'SIRET 108 160 078 00011',
+    responsable: 'Félix Bastide',
+    tva: '',              // facultatif, ex. 'TVA non applicable, art. 293 B du CGI'
+    mediateur: '',        // facultatif : médiateur de la consommation (nom + site web)
   },
 
   // URL du script Google (étape 5 du GUIDE.md).
