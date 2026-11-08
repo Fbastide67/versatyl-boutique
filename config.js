@@ -40,8 +40,9 @@ window.BOUTIQUE = {
     { src: 'img/visuel-dos.jpg', alt: 'Le visuel du dos en grand' },
   ],
 
-  instagram: 'https://www.instagram.com/',   // ton compte
+  instagram: 'https://www.instagram.com/versatyl_marseille/',   // ton compte
   contact: 'versatyl.marseille@gmail.com',            // e-mail pour les questions
+  telephone: '07 67 07 05 31',                        // affiché dans les mentions légales
 
   // Page « Mentions légales, CGV, confidentialité » (mentions-legales.html).
   // Remplis chaque ligne : tant qu'une ligne est vide, la page affiche « à compléter ».
@@ -51,7 +52,7 @@ window.BOUTIQUE = {
     adresse: '69 chemin de la Tuilerie, 84470 Châteauneuf-de-Gadagne',
     immatriculation: 'SIRET 108 160 078 00011',
     responsable: 'Félix Bastide',
-    tva: '',              // facultatif, ex. 'TVA non applicable, art. 293 B du CGI'
+    tva: 'TVA non applicable, art. 293 B du CGI',
     mediateur: '',        // facultatif : médiateur de la consommation (nom + site web)
   },
 

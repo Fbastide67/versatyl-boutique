@@ -22,6 +22,15 @@
     </div>
   </main>
 
+  <footer>
+    <img src="img/logo-clair.svg" alt="Versatyl" width="96" height="40">
+    <nav>
+      <a href="./">Boutique</a>
+      <a id="lien-contact" href="mailto:">Contact</a>
+      <a href="mentions-legales.html#cgv">CGV</a>
+    </nav>
+  </footer>
+
 <script>
 (function () {
   var C = window.BOUTIQUE;
@@ -29,6 +38,8 @@
   var p = new URLSearchParams(location.search);
   var euros = function (n) { return Number(n).toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' }); };
   var esc = function (s) { var d = document.createElement('div'); d.textContent = s == null ? '' : s; return d.innerHTML; };
+  var lienContact = '<a href="mailto:' + esc(C.contact) + '">' + esc(C.contact) + '</a>';
+  $('lien-contact').href = 'mailto:' + C.contact;
 
   function afficher(o, demo) {
     var qr = qrcode(0, 'M'); qr.addData(o.token); qr.make();
@@ -43,10 +54,11 @@
         '<div><span>Total payé</span><span>' + euros(o.total) + '</span></div>' +
       '</div>' +
       '<p class="aide" style="margin-top:14px">' + esc(C.retrait) + '</p>' +
+      '<p class="aide">Une question ? Écris-nous à ' + lienContact + ' en indiquant ton n° de commande.</p>' +
       (demo ? '<p class="aide">Démo : ouvre <a href="scan.html">la page scanner</a> et tape le n° ' + esc(o.numero) + ' pour tester la remise.</p>' : '');
   }
 
-  function erreur(t) { $('carte').innerHTML = '<h1>Oups</h1><p>' + esc(t) + '</p><p class="aide">Pas d’inquiétude si tu as payé : tu recevras ton e-mail dans quelques minutes. Sinon écris à ' + esc(C.contact) + '.</p>'; }
+  function erreur(t) { $('carte').innerHTML = '<h1>Oups</h1><p>' + esc(t) + '</p><p class="aide">Pas d’inquiétude si tu as payé : tu recevras ton e-mail dans quelques minutes. Sinon écris à ' + lienContact + '.</p>'; }
 
   // Mode démo
   if (p.has('demo')) {

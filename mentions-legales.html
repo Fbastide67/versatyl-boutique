@@ -34,9 +34,10 @@
         <dt>Immatriculation</dt><dd data-legal="immatriculation"></dd>
         <dt>Directeur·rice de la publication</dt><dd data-legal="responsable"></dd>
         <dt>Contact</dt><dd><a class="js-contact" href="#"></a></dd>
+        <dt>Téléphone</dt><dd><a class="js-tel" href="#"></a></dd>
       </dl>
       <h3>Hébergement</h3>
-      <p>GitHub Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis (service GitHub Pages, github.com).</p>
+      <p>OVH SAS, 2 rue Kellermann, 59100 Roubaix, France — 1007 (ovhcloud.com).</p>
       <h3>Propriété intellectuelle</h3>
       <p>Le logo, les visuels du t-shirt et les photos de ce site appartiennent à <span data-legal="vendeur" data-court></span> ou à leurs auteurs. Merci de ne pas les réutiliser sans autorisation.</p>
     </section>
@@ -77,7 +78,7 @@
       <h3>Pourquoi</h3>
       <p>Uniquement pour traiter ta commande : t'envoyer ton QR code, te prévenir en cas de changement, vérifier ton QR code le jour du retrait et tenir notre comptabilité. Nous n'envoyons pas de publicité et ne vendons tes données à personne.</p>
       <h3>Qui y a accès</h3>
-      <p>L'équipe qui organise la vente et nos prestataires : Stripe (paiement), Google (tableau des commandes et envoi de l'e-mail de confirmation) et GitHub (hébergement du site). Certains de ces prestataires sont situés aux États-Unis ; les transferts sont encadrés par les garanties prévues par le RGPD.</p>
+      <p>L'équipe qui organise la vente et nos prestataires : Stripe (paiement), Google (tableau des commandes et envoi de l'e-mail de confirmation) et OVH (hébergement du site). Certains de ces prestataires sont situés aux États-Unis ; les transferts sont encadrés par les garanties prévues par le RGPD.</p>
       <h3>Combien de temps</h3>
       <p>Les données de commande sont gardées le temps de la vente et du retrait, puis archivées pendant la durée imposée par les obligations comptables (10 ans pour les pièces comptables).</p>
       <h3>Tes droits</h3>
@@ -107,6 +108,7 @@
     if (!('court' in el.dataset)) el.className = 'a-completer';
   });
   tous('.js-contact').forEach(function (a) { a.textContent = C.contact; a.href = 'mailto:' + C.contact; });
+  tous('.js-tel').forEach(function (a) { a.textContent = C.telephone; a.href = 'tel:' + C.telephone.replace(/\s/g, ''); });
   tous('.js-produit').forEach(function (e) { e.textContent = C.produit; });
   tous('.js-prix').forEach(function (e) { e.textContent = euros(C.prix); });
   tous('.js-retrait').forEach(function (e) { e.textContent = C.retrait; });
